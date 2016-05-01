@@ -1,0 +1,7 @@
+{
+  "name": "Github Integration",
+  "uuid": "gnome-github-integration@selaux.github.io",
+  "description": "Integrates github functionality into the Gnome desktop environment.'",
+  "shell-version": ["3.16", "3.18", "3.20"],
+  "settings-schema": "org.gnome.shell.extensions.github-integration"
+}

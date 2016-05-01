@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gse-github-integration">
+
+  <schema path="/org/gnome/shell/extensions/github-integration/" id="org.gnome.shell.extensions.github-integration">
+
+    <key type="i" name="update-interval">
+      <default>60</default>
+      <summary>Interval of updates</summary>
+      <description>In this interval in seconds, the github api is polled for updates. The default is 60.</description>
+    </key>
+
+    <key type="s" name="user">
+      <default>"Your user name"</default>
+      <summary>GitHub User</summary>
+      <description>Your GitHub username.</description>
+    </key>
+
+    <key type="s" name="api-key">
+      <default>"Your api key"</default>
+      <summary>GitHub Api Key</summary>
+      <description>Your GitHub API Key</description>
+    </key>
+  </schema>
+</schemalist>
