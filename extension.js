@@ -1,9 +1,6 @@
 
 const Lang = imports.lang;
-const St = imports.gi.St;
 const Gtk = imports.gi.Gtk;
-const Gio = imports.gi.Gio;
-const GioSSS = Gio.SettingsSchemaSource;
 const Soup = imports.gi.Soup;
 const Main = imports.ui.main;
 const MessageTray = Main.MessageTray;
@@ -11,7 +8,7 @@ const Panel = Main.Panel;
 const mainLoop = imports.mainloop;
 const ExtensionUtils = imports.misc.extensionUtils;
 
-const Me = imports.misc.extensionUtils.getCurrentExtension();
+const Me = ExtensionUtils.getCurrentExtension();
 const Settings = Me.imports.settings;
 
 const gsettings = Settings.getSettings(Me);
@@ -25,16 +22,25 @@ Soup.Session.prototype.add_feature.call(_httpSession, new Soup.ProxyResolverDefa
 
 const notified = {};
 let timeout = null;
+let indicator = null;
 
 function init() {
 }
 
 function enable() {
   Main.messageTray.add(notificationSource);
+
+  indicator = new Panel.PanelIndicator();
+  Main.panel.addToStatusArea('mediaplayer', indicator);
+
   refresh();
 }
 
 function disable() {
+  if (indicator) {
+    indicator.destroy();
+    indicator = null;
+  }
 }
 
 const GitHubNotification = new Lang.Class({
@@ -45,7 +51,7 @@ const GitHubNotification = new Lang.Class({
       this.parent(source, notificationData.repository.name, notificationData.subject.title);
       this.notificationData = notificationData;
 
-      this.connect('activated', Lang.bind(this, function(self, action) {
+      this.connect('activated', Lang.bind(this, function() {
           const url = notificationData.subject.latest_comment_url
 
           makeGitHubRequest(url, function (_httpSession, response) {

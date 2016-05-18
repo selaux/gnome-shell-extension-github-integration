@@ -1,0 +1,14 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+      "eol-last": 2,
+      "no-unused-vars": ["error", { "vars": "local" }]
+  },
+  "env": {
+    "es6": true
+  },
+  "globals": {
+    "imports": false,
+    "global": false
+  }
+}

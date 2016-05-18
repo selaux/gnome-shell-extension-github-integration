@@ -1,0 +1,22 @@
+{
+  "name": "gnome-shell-extension-github-integration",
+  "version": "0.0.1",
+  "description": "GitHub integration for the Gnome 3 desktop environment.",
+  "main": "extension.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selaux/gnome-shell-extension-github-integration.git"
+  },
+  "author": "selaux",
+  "license": "GPL-2",
+  "bugs": {
+    "url": "https://github.com/selaux/gnome-shell-extension-github-integration/issues"
+  },
+  "homepage": "https://github.com/selaux/gnome-shell-extension-github-integration#readme",
+  "devDependencies": {
+    "eslint": "^2.10.2"
+  }
+}

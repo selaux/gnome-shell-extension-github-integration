@@ -1,6 +1,4 @@
 const Gtk = imports.gi.Gtk;
-const GObject = imports.gi.GObject;
-
 const Gettext = imports.gettext.domain('gnome-shell-extensions-mediaplayer');
 const _ = Gettext.gettext;
 
@@ -9,7 +7,6 @@ const Settings = Me.imports.settings;
 
 let gsettings;
 let settings;
-let settings_indicator;
 
 function init() {
     gsettings = Settings.getSettings(Me);
