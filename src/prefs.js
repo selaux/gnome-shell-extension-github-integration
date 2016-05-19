@@ -1,15 +1,16 @@
+import getSettings from './lib/getSettings';
+
 const Gtk = imports.gi.Gtk;
 const Gettext = imports.gettext.domain('gnome-shell-extensions-mediaplayer');
 const _ = Gettext.gettext;
 
 const Me = imports.misc.extensionUtils.getCurrentExtension();
-const Settings = Me.imports.settings;
 
 let gsettings;
 let settings;
 
 function init() {
-    gsettings = Settings.getSettings(Me);
+    gsettings = getSettings(imports, Me);
     settings = {
         user: {
             type: "s",
@@ -114,3 +115,5 @@ function createIntSetting(settings, setting) {
 
     return hbox;
 }
+
+global.extension = { init: init, buildPrefsWidget: buildPrefsWidget };

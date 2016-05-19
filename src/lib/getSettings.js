@@ -1,7 +1,7 @@
-const Gio = imports.gi.Gio;
-const GLib = imports.gi.GLib;
+export default function getSettings(imports, extension) {
+    const Gio = imports.gi.Gio;
+    const GLib = imports.gi.GLib;
 
-function getSettings(extension) {
     let schemaName = 'org.gnome.shell.extensions.github-integration';
     let schemaDir = extension.dir.get_path();
 
