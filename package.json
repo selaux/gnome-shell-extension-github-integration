@@ -4,7 +4,7 @@
   "description": "GitHub integration for the Gnome 3 desktop environment.",
   "main": "extension.js",
   "scripts": {
-    "build": "rollup -c 'rollup.extension.js' && rollup -c 'rollup.prefs.js' && cp -rf assets/* dist/",
+    "build": "rollup -c 'rollup.extension.js' && rollup -c 'rollup.prefs.js' && cp -rf assets/* dist/ && glib-compile-schemas --targetdir=dist schemas",
     "clean": "rm -r dist",
     "dev": "watch 'npm run build' src/",
     "test": "eslint ."
