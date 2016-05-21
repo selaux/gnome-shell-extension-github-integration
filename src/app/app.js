@@ -4,14 +4,17 @@ import thunk from 'redux-thunk';
 
 import { updateNotifications } from './actions/notifications';
 import notifications from './reducers/notifications';
+import Indicator from './components/Indicator';
 
 function fetchInfinite(context, rootStore) {
     rootStore.dispatch(R.partial(updateNotifications, [ context ])).then(function () {
-        context.setTimeout(R.partial(fetchInfinite, [ context, rootStore ]), 60000);
+        const interval = context.settings.get_int('update-interval');
+
+        context.setTimeout(R.partial(fetchInfinite, [ context, rootStore ]), interval * 1000);
     });
 }
 
-export default function start(context) {
+export default function start(context, ui) {
     const initialState = {
         fetching: false,
         error: null,
@@ -19,7 +22,10 @@ export default function start(context) {
     };
     const rootStore = createStore(notifications, initialState, applyMiddleware(thunk));
 
-    rootStore.subscribe(() => global.log(JSON.stringify(rootStore.getState())));
+    const indicatorComponent = new Indicator(ui.indicator);
+    rootStore.subscribe(() => indicatorComponent.update({ notifications: rootStore.getState().notifications }));
+
+    // rootStore.subscribe(() => global.log(JSON.stringify(rootStore.getState())));
 
     fetchInfinite(context, rootStore);
 }
